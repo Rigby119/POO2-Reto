@@ -1,33 +1,46 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Dungeon.h"
-
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-class Player {
+class Monster;
+
+class Player{
   protected:
-    string name, ID, type;
-    int level, hp;
+    string name, type;
+    int level, hp, maxHP;
     float exp, baseAttack;
   public:
-    Player(string nm);
-    void attack(Monster *m){m -> receiveDamage(baseAttack);};
-    int getHP(){return hp;};
-    void setHP(int NewHp){hp=NewHp;};
-    void receiveDamage(int dmg){hp=hp-dmg;}
+    Player();
+    Player(string);
+    string getName(){return name;}
+    string getClass(){return type;}
+    int getHP(){return hp;}
+    int getMaxHP(){return maxHP;}
+    virtual void showInfo(){cout << name;}
+    bool isAlive(){if (hp<=0) return false; else return true;}
+    void setHP(int newHp){hp=newHp;}
+    virtual void heal(Player*) {cout << "";}
+    virtual void receiveDamage(int dmg){hp-=dmg; if(hp<0){hp=0;}}
+    virtual void attack(Monster*);
 };
 
+#include "Monster.h"
+
 Player::Player(string nm){
-  ID=to_string(rand());
   name=nm;
   level=0;
   hp=30;
+  maxHP=30;
   exp=0.0;
-  baseAttack=1.0;
+  baseAttack=10;
 };
+
+void Player::attack(Monster* m){
+  m->receiveDamage(baseAttack);
+}
 
 #endif

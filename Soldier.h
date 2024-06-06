@@ -3,72 +3,61 @@
 
 #include "Player.h"
 
-using namespace std;
-
-class Soldier : public Player {
-  private:
-    string weapon;
-    float attackBoost;
+class Soldier : public Player{
   public:
-    Soldier(string nm);
-    Soldier(string w, string nm);
+    Soldier(string);
     void showInfo();
+    void increaseExp(float);
     void updateAttributes();
-    void increaseExp(float NewExp);
-    float attack();
+    void attack(Monster*);
 };
 
-Soldier::Soldier(string nm) : Player(nm){
-  int res = rand()%2;
-  if (res == 1){
-    weapon="Longsword";
-  } else{
-    weapon="Mace";
-  }
-  attackBoost=0.5;
-  baseAttack+=attackBoost;
-  type="Soldier";
-}
-
-Soldier::Soldier(string w, string nm) : Player(nm){
-  weapon=w;
-  attackBoost=0.5;
-  baseAttack+=attackBoost;
+Soldier::Soldier(string nm):Player(nm){
+  baseAttack=15;
   type="Soldier";
 }
 
 void Soldier::showInfo(){
   cout << "Name: " << name << endl;
   cout << "Class: " << type << endl;
-  cout << "ID: " << ID << endl;
   cout << "Level: " << level << endl;
-  cout << "HP: " << hp << endl;
+  cout << "HP: " << hp << "/" << maxHP << endl;
   cout << "Experience Points: " << exp << endl;
   cout << "Base Attack: " << baseAttack << endl;
-  cout << "Weapon: " << weapon << endl;
-  cout << "Attack Boost: " << attackBoost << endl;
 };
 
-void Soldier::updateAttributes(){
-  hp+=5;
-  baseAttack+=0.2;
-  attackBoost+=0.1;
-}
-
-void Soldier::increaseExp(float NewExp){
+void Soldier::increaseExp(float newExp){
   float rate;
-  if (level==0){rate=1;}
-  else {rate=1/float(level);}
-  exp+=NewExp/50*rate;
-  while (exp>=1){
-    level++;
-    exp-=1;
-    updateAttributes();
+  float points = newExp/50;
+  while (true){
+    if (level==0){
+      rate=1.0;
+    } else{
+      rate=1.0/level;
+    }
+    exp+=points*rate;
+    if (exp>=1){
+      level++;
+      updateAttributes();
+      exp-=1;
+      points=exp/rate;
+      exp=0;
+    } else{break;}
   }
 }
 
-float Soldier::attack(){
-  return baseAttack+attackBoost;
+void Soldier::updateAttributes(){
+  maxHP+=5;
+  hp=maxHP;
+  baseAttack+=3;
+}
+
+void Soldier::attack(Monster* m){
+  bool alive = m->isAlive();
+  m->receiveDamage(baseAttack);
+  if (alive && !m->isAlive()){
+    increaseExp(50);
+  }
 }
 
 #endif
