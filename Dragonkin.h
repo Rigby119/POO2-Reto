@@ -8,7 +8,7 @@ class Dragonkin : public Monster {
     int baseFireAttack;
   public:
     Dragonkin(bool);
-    void attack(Player*) override;
+    void attack(Player*);
     void fireAttack(Player*);
 };
 

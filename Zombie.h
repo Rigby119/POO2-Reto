@@ -8,7 +8,7 @@ class Zombie : public Monster {
     bool resurrected;
   public:
     Zombie(bool b);
-    void attack(Player* p) override;
+    void attack(Player* p);
 };
 
 Zombie::Zombie(bool b):Monster(b){

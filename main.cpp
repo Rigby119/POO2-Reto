@@ -26,82 +26,123 @@ void showPlayers(){
 
 void crearPersonaje(int index){
   string nombre;
-  int clase;
+  string clase;
   cout << "Dame el nombre de tu personaje #" << index << endl << ">>> ";
-  cin >> nombre;
+  getline(cin, nombre);
   cout << endl;
-  cout << "¿Cuál clase quieres que tenga? (ingresa el número de tu elección)" << endl;
-  cout << "1) Mago (Curación)" << endl;
-  cout << "2) Soldado (Ataques potentes)" << endl;
-  cout << "3) Guardían (Resistencia y más vida)" << endl;
-  cout << ">>> ";
-  cin >> clase;
-  cout << endl;
-  if (clase == 1){
-    int elemento;
-    cout << "La clase Mago tiene un atributo especial, escoge cuál prefieres (ingresa el número de tu elección)" << endl;
-    cout << "1) Mago de Luz (Hace más daño a los zombies)" << endl;
-    cout << "2) Mago de Oscuridad (Hace más daño a los dragonoides)" << endl;
+  while (true){
+    cout << "Cual clase quieres que tenga? (ingresa el numero de tu eleccion)" << endl;
+    cout << "1) Mago (Curacion)" << endl;
+    cout << "2) Soldado (Ataques potentes)" << endl;
+    cout << "3) Guardian (Resistencia y mas vida)" << endl;
     cout << ">>> ";
-    cin >> elemento;
+    getline(cin, clase);
     cout << endl;
-    if (elemento==1){
-      players[numP]=new Mage(nombre, "Light");
-    }  else if (elemento==2){
-      players[numP]=new Mage(nombre, "Dark");
+    if (clase=="1"||clase=="2"||clase=="3"){
+      break;
+    } else{
+      cout << "Por favor, introduce un numero valido." << endl << endl;
     }
-  } else if (clase==2){
+  }
+  if (clase=="1"){
+    string elemento;
+    while(true){
+      cout << "La clase Mago tiene un atributo especial, escoge cual prefieres (ingresa el numero de tu eleccion)" << endl;
+      cout << "1) Mago de Luz (Hace mas daño a los zombies)" << endl;
+      cout << "2) Mago de Oscuridad (Hace mas daño a los dragonoides)" << endl;
+      cout << ">>> ";
+      getline(cin, elemento);
+      cout << endl;
+      if (elemento=="1"){
+        players[numP]=new Mage(nombre, "Light");
+        break;
+      } else if (elemento=="2"){
+        players[numP]=new Mage(nombre, "Dark");
+        break;
+      } else{
+        cout << "Por favor, introduce un numero valido." << endl << endl;
+      }
+    }
+  } else if (clase=="2"){
     players[numP]=new Soldier(nombre);
-  } else if (clase==3){
+  } else if (clase=="3"){
     players[numP]=new Guardian(nombre);
   }
   numP++;
 }
 
+void atacar(int idx, Room* r){
+  string monster;
+  while (true){
+    cout << "A que monstruo atacaras? (introduce un numero del 1 al 3)" << endl;
+    cout << ">>> ";
+    getline(cin, monster);
+    cout << endl;
+    if (monster=="1"){
+      players[idx]->attack(r->monsters[0]);
+      break;
+    } else if (monster=="2"){
+      players[idx]->attack(r->monsters[1]);
+      break;
+    } else if (monster=="3"){
+      players[idx]->attack(r->monsters[2]);
+      break;
+    } else{
+      cout << "Por favor, introduce un numero valido." << endl << endl;
+    }
+  }
+}
+
 void turn(int idx, Room* r){
   int idx2;
   if (idx==0){idx2=1;} else{idx2=0;}
-  int monster;
-  int opcion;
+  string opcion;
   cout << "Turno de " << players[idx]->getName() << endl << endl;
   if (players[idx]->getClass()=="Mage"){
-    cout << "¿Quieres atacar un monstruo o curar a un aliado? (introduce un número del 1 al 2)" << endl;
-    cout << "1) Atacar" << endl;
-    cout << "2) Curar" << endl;
-    cout << ">>> ";
-    cin >> opcion;
-    cout << endl;
-    if (opcion==1){
-      cout << "¿A qué monstruo atacarás? (introduce un número del 1 al 3)" << endl;
+    while (true){
+      cout << "Quieres atacar un monstruo o curar a un aliado? (introduce un numero del 1 al 2)" << endl;
+      cout << "1) Atacar" << endl;
+      cout << "2) Curar" << endl;
       cout << ">>> ";
-      cin >> monster;
+      getline(cin, opcion);
       cout << endl;
-      players[idx]->attack(r->monsters[monster-1]);
+      if (opcion=="1"||opcion=="2"){
+        break;
+      } else{
+        cout << "Por favor, introduce un numero valido." << endl << endl;
+      }
+    }
+    if (opcion=="1"){
+      atacar(idx, r);
     } else{
       players[idx]->heal(players[idx2]);
     }
   } else{
-    cout << "¿A qué monstruo atacarás? (introduce un número del 1 al 3)" << endl;
-    cout << ">>> ";
-    cin >> monster;
-    cout << endl;
-    players[idx]->attack(r->monsters[monster-1]);
+    atacar(idx, r);
   }
+  
 }
 
 void turnB(int idx, Room* r){
   int idx2;
   if (idx==0){idx2=1;} else{idx2=0;}
-  int opcion;
+  string opcion;
   cout << "Turno de " << players[idx]->getName() << endl << endl;
   if (players[idx]->getClass()=="Mage"){
-    cout << "¿Quieres atacar al jefe o curar a un aliado? (introduce un número del 1 al 2)" << endl;
-    cout << "1) Atacar" << endl;
-    cout << "2) Curar" << endl;
-    cout << ">>> ";
-    cin >> opcion;
-    cout << endl;
-    if (opcion==1){
+    while (true){
+      cout << "Quieres atacar un monstruo o curar a un aliado? (introduce un numero del 1 al 2)" << endl;
+      cout << "1) Atacar" << endl;
+      cout << "2) Curar" << endl;
+      cout << ">>> ";
+      getline(cin, opcion);
+      cout << endl;
+      if (opcion=="1"||opcion=="2"){
+        break;
+      } else{
+        cout << "Por favor, introduce un numero valido." << endl << endl;
+      }
+    }
+    if (opcion=="1"){
       players[idx]->attack(r->monsters[0]);
     } else{
       players[idx]->heal(players[idx2]);
@@ -135,14 +176,21 @@ void bossTurn(Room* r){
 
 
 int main() {
-  bool info;
-  cout << "¡Bienvenido a Shangri-La Frontier!" << endl << endl;
-  cout << "¿Quisieras saber acerca del juego antes de empezar? (ingresa el número de tu elección)" << endl << "0) Sí" << endl << "1) No"<< endl;
-  cout << ">>> ";
-  cin >> info;
-  cout << endl;
-  if (!info){
-    descripcion();
+  string info;
+  cout << "Bienvenido a Shangri-La Frontier" << endl << endl;
+  while(true){
+    cout << "Quisieras saber acerca del juego antes de empezar? (ingresa el numero de tu eleccion)" << endl << "1) Si" << endl << "2) No"<< endl;
+    cout << ">>> ";
+    getline(cin, info);
+    cout << endl;
+    if (info=="1"){
+      descripcion();
+      break;
+    } else if (info=="2"){
+      break;
+    } else{
+      cout << "Por favor, introduce un numero valido." << endl << endl;
+    }
   }
   cout << "Ahora crearemos tus personajes" << endl << endl;
   crearPersonaje(1);
