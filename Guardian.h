@@ -1,3 +1,15 @@
+/*
+ * Proyecto Shangri-La clase Guardian
+ * Roberto Serna Niño
+ * A01709577
+ * 12/06/2024
+ * version : 5
+ * Esta clase define a un objeto de personaje con un rol de guardian, este tiene algunas
+ * sobreescrituras de métodos definidos en la clase Player que principalmente agregan
+ * funcionalidad con atributos especiales que solo están en esta clase, en este caso
+ * sería la defensa del personaje.
+*/
+
 #ifndef GUARDIAN_H
 #define GUARDIAN_H
 
@@ -5,7 +17,7 @@
 
 class Guardian : public Player{
   private:
-    float dp;
+    int dp;
   public:
     Guardian(string);
     void showInfo();
@@ -16,7 +28,7 @@ class Guardian : public Player{
 };
 
 Guardian::Guardian(string nm) : Player(nm){
-  dp=2;
+  dp=3;
   hp+=5;
   maxHP+=5;
   type="Guardian";
@@ -55,7 +67,7 @@ void Guardian::increaseExp(float newExp){
 void Guardian::updateAttributes(){
   maxHP+=10;
   hp=maxHP;
-  baseAttack+=1;
+  baseAttack+=3;
 }
 
 void Guardian::attack(Monster* m){
@@ -67,3 +79,13 @@ void Guardian::attack(Monster* m){
 }
 
 #endif
+
+/*
+Guardian(string) - Crea un nuevo Mage que solo pide un nombre, el elemento es asignado de manera aleatoria.
+showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+updateAttributes - Actualiza los puntos de defensa, la vida base y actual del jugador así cómo su daño base.
+increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
+(este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+receiveDamage - Le hace daño al jugador pero en este caso es un daño reducido gracias a los puntos de defensa del Guardian
+attack - Ataca a un monstruo, sobreescribiendo el método de Player.
+*/

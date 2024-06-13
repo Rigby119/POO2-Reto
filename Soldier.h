@@ -1,3 +1,14 @@
+/*
+ * Proyecto Shangri-La clase Soldier
+ * Roberto Serna Niño
+ * A01709577
+ * 12/06/2024
+ * version : 5
+ * Esta clase define a un objeto de personaje con un rol de soldado, este tiene algunas
+ * sobreescrituras de métodos definidos en la clase Player que principalmente agregan
+ * atributos a los métodos o cambian los ya definidos (en este caso el daño de los ataques).
+*/
+
 #ifndef SOLDIER_H
 #define SOLDIER_H
 
@@ -49,7 +60,7 @@ void Soldier::increaseExp(float newExp){
 void Soldier::updateAttributes(){
   maxHP+=5;
   hp=maxHP;
-  baseAttack+=3;
+  baseAttack+=6;
 }
 
 void Soldier::attack(Monster* m){
@@ -61,3 +72,12 @@ void Soldier::attack(Monster* m){
 }
 
 #endif
+
+/*
+Soldier(string)- Crea un nuevo Soldier que solo pide un nombre para crear conforme a Player().
+showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
+(este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+updateAttributes - Actualiza la vida base y actual del jugador así cómo su daño base, el cuál aumenta más para Soldier que para las otras clases.
+attack - Ataca a un monstruo, sobreescribiendo el método de Player.
+*/

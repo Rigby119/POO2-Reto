@@ -1,3 +1,14 @@
+/*
+ * Proyecto Shangri-La clase Monster
+ * Roberto Serna Niño
+ * A01709577
+ * 12/06/2024
+ * version : 5
+ * Esta clase define a un objeto Monster, el cuál es una clase abstracta que tiene
+ * como hijos a zombie y dragonkin, esta clase y la clase Player interactuan
+ * constantemente, principalmente con metodos que tienen apuntadores de la otra clase.
+*/
+
 #ifndef MONSTER_H
 #define MONSTER_H
 
@@ -14,7 +25,6 @@ class Monster{
     string type;
   public:
     Monster(bool);
-    virtual ~Monster() {} // Destructor virtual
     virtual void attack(Player*) = 0;
     void showInfo();
     int getHP(){return hp;}
@@ -23,10 +33,10 @@ class Monster{
     bool getBoss(){return boss;}
     void setIndex(int i){index=i;}
     void receiveDamage(int);
-    void kill();
 };
 
 #include "Player.h"
+// Este include se hace después de definir la clase para que attack pueda llamar un apuntador de Player
 
 Monster::Monster(bool b){
   if (b){
@@ -56,3 +66,15 @@ void Monster::receiveDamage(int dmg){
 }
 
 #endif
+
+/*
+Monster (bool) - Crea un nuevo monstruo con un bool que dice si es o no es Jefe.
+attack - Esta función no tiene implementación así que su comportamiento se incluye en las hijas.
+showInfo - Muestra la informacion de monster.
+getHP - Da la vida del monstruo.
+isAlive - Checa si el monstruo está vivo.
+getRace - Da la raza del monstruo (dragon o zombie).
+getBoss - Dice si es boss.
+setIndex - Le da un index con respecto de una habitacion.
+receiveDamage - Recibe daño, pero si es jefe, solo la mitad del daño.
+*/

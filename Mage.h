@@ -1,3 +1,15 @@
+/*
+ * Proyecto Shangri-La clase Mage
+ * Roberto Serna Niño
+ * A01709577
+ * 12/06/2024
+ * version : 5
+ * Esta clase define a un objeto de personaje con un rol de mago, este tiene algunas
+ * sobreescrituras de métodos definidos en la clase Player que principalmente agregan
+ * funcionalidad con atributos especiales que solo están en esta clase, en este caso
+ * sería el elemento del mago.
+*/
+
 #ifndef MAGE_H
 #define MAGE_H
 
@@ -7,14 +19,13 @@ class Mage : public Player{
   private:
     string element;
   public:
-    Mage();
     Mage(string);
     Mage(string, string);
-    void showInfo() override;
-    void heal(Player*) override;
+    void showInfo();
+    void heal(Player*);
     void increaseExp(float);
     void updateAttributes();
-    void attack(Monster*) override;
+    void attack(Monster*);
 };
 
 Mage::Mage(string nm):Player(nm){
@@ -43,8 +54,10 @@ void Mage::showInfo(){
 }
 
 void Mage::heal(Player* p){
-  int cura = (p->getMaxHP()-p->getHP())/2;
-  p -> setHP(cura+p->getHP());
+  if (p->isAlive()){
+    int cura = (p->getMaxHP()-p->getHP())/2;
+    p -> setHP(cura+p->getHP());
+  }
 }
 
 void Mage::increaseExp(float newExp){
@@ -70,7 +83,7 @@ void Mage::increaseExp(float newExp){
 void Mage::updateAttributes(){
   maxHP+=5;
   hp=maxHP;
-  baseAttack+=1;
+  baseAttack+=3;
 }
 
 void Mage::attack(Monster* m){
@@ -89,3 +102,14 @@ void Mage::attack(Monster* m){
 }
 
 #endif
+
+/*
+Mage (string) - Crea un nuevo Mage que solo pide un nombre, el elemento es asignado de manera aleatoria.
+Mage (string, string) - Crea un nuevo Mage que pide el nombre y el elemento.
+showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+heal - Cura a otro personaje usando su apuntador sobreescribiendo el método de Player.
+increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
+(este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+updateAttributes - Actualiza la vida base y actual del jugador así cómo su daño base.
+attack - Ataca a un monstruo, sobreescribiendo el método de Player, dependiendo del elemento del mago y del tipo de monstruo puede hacer más o menos daño.
+*/
