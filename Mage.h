@@ -105,11 +105,31 @@ void Mage::attack(Monster* m){
 
 /*
 Mage (string) - Crea un nuevo Mage que solo pide un nombre, el elemento es asignado de manera aleatoria.
+@param string nombre del Player
+@return
+
 Mage (string, string) - Crea un nuevo Mage que pide el nombre y el elemento.
+@param string nombre del Player, string elemento del Mage
+@return
+
 showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+@param
+@return
+
 heal - Cura a otro personaje usando su apuntador sobreescribiendo el método de Player.
+@param Player* apuntador a un Player para curarlo
+@return
+
 increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
 (este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+@param float experiencia ganada
+@return
+
 updateAttributes - Actualiza la vida base y actual del jugador así cómo su daño base.
+@param
+@return
+
 attack - Ataca a un monstruo, sobreescribiendo el método de Player, dependiendo del elemento del mago y del tipo de monstruo puede hacer más o menos daño.
+@param Monster* apuntador de un objeto Monster
+@return
 */

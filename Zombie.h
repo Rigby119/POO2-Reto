@@ -44,5 +44,10 @@ void Zombie::attack(Player *p){
 
 /*
 Zombie (bool) - Crea un zombie nuevo declarando si es jefe o no en el constructor de la madre, si es monstruo también declara el atributo resurrected como verdadero.
+@param bool Confirmacion de si es jefe o no que también se refiere a si es resurgido o no
+@return
+
 attack - Ataca a un player pero con un bonus extra de daño por quemadura.
+@param Player * apuntador a un objeto Player
+@return
 */

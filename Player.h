@@ -25,7 +25,6 @@ class Player{
     int level, hp, maxHP;
     float exp, baseAttack;
   public:
-    Player();
     Player(string);
     string getName(){return name;}
     string getClass(){return type;}
@@ -54,16 +53,47 @@ Player::Player(string nm){
 #endif
 
 /*
-Player() - Constructor por defecto de Player.
 Player(string) - Crea un nuevo Player con atributos por defecto y un nombre solicitado en parametros.
+@param string nombre del Player
+@return
+
 getName - Da el nombre del Player.
+@param
+@return string nombre del Player name
+
 getClass - Da la clase del Player.
+@param
+@return string clase del Player type
+
 getHP - Da la vida del Player.
+@param
+@return int vida actual hp
+
 getMaxHP - Da la vida máxima del Player.
+@param
+@return int vida maxima maxHP
+
 showInfo - Función para mostrar la información del usuario pero que será sobreescrita por las hijas.
+@param
+@return
+
 isAlive - Dice si el jugador sigue vivo (sí o no).
+@param
+@return bool True si está vivo, False si no
+
 setHP - Le da un nuevo valor a la vida del jugador, si el nuevo valor es menor que 0, entonces se queda en 0.
+@param int nuevo valor de hp
+@return
+
 heal - Método de la clase Mage que es creado en Player debido a que el main lo llamará usando el apuntador a un objeto tipo Player, será sobreescrito en Mage.
+@param Player* apuntador al Player a curar
+@return
+
 receiveDamage - Método en el que reciben daño los jugadores, se sobreescribirá unicamente en la clase Guardian mientras que Soldier y Mage lo usaran cómo está declarado aquí.
+@param int daño recibido
+@return
+
 attack - Método para atacar a un monstruo, se sobreescribe en todos los hijos .
+@param Monster* apuntador al Monster atacado
+@return
 */

@@ -36,5 +36,10 @@ void Dragonkin::attack(Player *p){
 
 /*
 Dragonkin (bool) - Crea un dragón nuevo declarando si es jefe o no en el constructor de la madre.
+@param bool Confirmacion de si es jefe o no
+@return
+
 attack - Ataca a un player pero con un bonus extra de daño por quemadura.
+@param Player * apuntador a un objeto Player
+@return
 */

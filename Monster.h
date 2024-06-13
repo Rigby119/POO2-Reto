@@ -69,12 +69,38 @@ void Monster::receiveDamage(int dmg){
 
 /*
 Monster (bool) - Crea un nuevo monstruo con un bool que dice si es o no es Jefe.
+@param bool Confirmacion de si es jefe o no
+@return
+
 attack - Esta función no tiene implementación así que su comportamiento se incluye en las hijas.
+@param Player * apuntador de objeto Player
+@return
+
 showInfo - Muestra la informacion de monster.
+@param
+@return
+
 getHP - Da la vida del monstruo.
+@param
+@return int devuelve hp del monstruo
+
 isAlive - Checa si el monstruo está vivo.
+@param
+@return devuelve True si está vivo, false si no
+
 getRace - Da la raza del monstruo (dragon o zombie).
+@param
+@return string devuelve el tipo de monstruo
+
 getBoss - Dice si es boss.
+@param
+@return bool True si b es true, False si b es false
+
 setIndex - Le da un index con respecto de una habitacion.
+@param int indice a asignar
+@return
+
 receiveDamage - Recibe daño, pero si es jefe, solo la mitad del daño.
+@param int daño recibido
+@return
 */

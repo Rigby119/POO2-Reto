@@ -75,9 +75,23 @@ void Soldier::attack(Monster* m){
 
 /*
 Soldier(string)- Crea un nuevo Soldier que solo pide un nombre para crear conforme a Player().
+@param string nombre del Player
+@return
+
 showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+@param
+@return
+
 increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
 (este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+@param float cantidad de experiencia recibida
+@return
+
 updateAttributes - Actualiza la vida base y actual del jugador así cómo su daño base, el cuál aumenta más para Soldier que para las otras clases.
+@param
+@return
+
 attack - Ataca a un monstruo, sobreescribiendo el método de Player.
+@param Monster* apuntar al objeto Monster
+@return
 */

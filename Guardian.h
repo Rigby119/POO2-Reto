@@ -82,10 +82,27 @@ void Guardian::attack(Monster* m){
 
 /*
 Guardian(string) - Crea un nuevo Mage que solo pide un nombre, el elemento es asignado de manera aleatoria.
+@param string nombre del Player
+@return
+
 showInfo - Muestra la información del personaje sobreescribiendo el método de Player.
+@param
+@return
+
 updateAttributes - Actualiza los puntos de defensa, la vida base y actual del jugador así cómo su daño base.
+@param
+@return
+
 increaseExp - Incrementa la experiencia que tiene el personaje y si llega a un tope, sube de nivel, actualizando sus atributos en el proceso.
 (este metodo es creado en las hijas y no en la madre debido a que llama a update attributes que no está en la madre y cambia en cada hija)
+@param float experiencia ganada
+@return
+
 receiveDamage - Le hace daño al jugador pero en este caso es un daño reducido gracias a los puntos de defensa del Guardian
+@param int daño recibido
+@return
+
 attack - Ataca a un monstruo, sobreescribiendo el método de Player.
+@param Monster* apuntador al Monster atacado
+@return
 */

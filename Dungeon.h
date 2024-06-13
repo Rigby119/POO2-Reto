@@ -116,15 +116,40 @@ void Dungeon::clearDungeon(){
 PARA LA CLASE ROOM
 
 Room (int) - Crea una nueva habitación con un índice.
+@param int indice de la habitación con respecto a su dungeon
+@return
+
 getMonsterCount - Da la cantidad de monstruos que hay en la hab.
+@param
+@return int numero de monstruos
+
 addMonster - Añade un Monstruo a la hab con un límite de 3 monstruos.
+@param Monster* apuntador a un objeto Monster
+@return
+
 showInfo - Muestra la información de cada monstruo llamando su showInfo.
+@param
+@return
+
 monstersAlive - Si hay al menos un monstruo vivo regresa un valor verdadero.
+@param
+@return bool true si hay al menos un monstruo vivo, false si no hay ninguno
+
 clearRoom - Muestra que ya se limpió la habitacion.
+@param
+@return
 
 PARA LA CLASE DUNGEON
 
 Dungeon(string) - Crea un nuevo Dungeon con un boss de la raza que se ingrese (Dragonkin or Zombie).
+@param string raza del jefe "Dragonkin" o "Zombie"
+@return
+
 showDungeon - Muestra la información de las habitaciones del dungeon que a su vez muestra la info de los monstruos
+@param
+@return
+
 clearDungeon - Muestra que ya se terminó la dungeon
+@param
+@return
 */
